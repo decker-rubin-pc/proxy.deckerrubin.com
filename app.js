@@ -1,8 +1,8 @@
 const cors = require('cors');
 const fetch = require('node-fetch');
 const history = require('connect-history-api-fallback');
-// const scUser = '564051336'; // Decker & Rubin
-const scUser = '12398941'; // Michael Lawrence
+const scUser = '564051336'; // Decker & Rubin
+//const scUser = '12398941'; // Michael Lawrence
 const podcastRSSUrl = `http://feeds.soundcloud.com/users/soundcloud:users:${scUser}/sounds.rss`;
 
 const express = require('express');
