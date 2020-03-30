@@ -1,13 +1,13 @@
 const cors = require('cors');
 const fetch = require('node-fetch');
 const history = require('connect-history-api-fallback');
-const podcastRSSUrl = `http://feeds.soundcloud.com/users/soundcloud:users:${scUser}/sounds.rss`;
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 9000;
 const soundcloud_oauth = process.env.soundcloud_oauth;
 const soundcloud_userid = process.env.soundcloud_userid;
 const soundcloud_clientid = process.env.soundcloud_clientid;
+const podcastRSSUrl = `http://feeds.soundcloud.com/users/soundcloud:users:${soundcloud_userid}/sounds.rss`;
 
 app.use(cors());
 
