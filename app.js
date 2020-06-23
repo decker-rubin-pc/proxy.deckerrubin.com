@@ -19,20 +19,22 @@ app.get('/p/json', async (req, res) => {
         const body = await response.text();
 
         parseString(body, (err, result) => {
-            const tracks = _
-                .chain(result)
-                .get('rss.channel[0].item')
-                .map(x => ({
-                    id: _.last(_.first(x.link).split('/')),
-                    description: _.first(x.description),
-                    title: _.first(x.title),
-                    created_at: new Date(_.first(x.pubDate)),
-                    public: true,
-                    link: _.first(x.link)
-                }))
-                .value();
+            const collection = {
+                collection: _
+                    .chain(result)
+                    .get('rss.channel[0].item')
+                    .map(x => ({
+                        id: _.last(_.first(x.link).split('/')),
+                        description: _.first(x.description),
+                        title: _.first(x.title),
+                        created_at: new Date(_.first(x.pubDate)),
+                        public: true,
+                        link: _.first(x.link)
+                    }))
+                    .value()
+            };
 
-            res.send(tracks);
+            res.send(collection);
         });
     } catch (err) {
         console.error(err);
