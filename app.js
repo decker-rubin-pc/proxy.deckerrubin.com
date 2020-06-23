@@ -17,14 +17,13 @@ app.get('/p/json', async (req, res) => {
     try {
         const response = await fetch(podcastRSSUrl);
         const body = await response.text();
-
         parseString(body, (err, result) => {
             const collection = {
                 collection: _
                     .chain(result)
                     .get('rss.channel[0].item')
                     .map(x => ({
-                        id: _.last(_.first(x.link).split('/')),
+                        id: _.last(_.get(_.first(x.guid), '_').split('/')),
                         description: _.first(x.description),
                         title: _.first(x.title),
                         created_at: new Date(_.first(x.pubDate)),
